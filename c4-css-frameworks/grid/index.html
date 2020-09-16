@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <style>
+            .grid {
+                display: grid;
+                grid-template-rows: 100px 200px;
+                grid-template-columns: 100px 200px;
+            }
+            img {
+                display: none;
+            }
+            @media (max-width: 600px) {
+                .grid {
+                    grid-template-columns: 200px;
+                    grid-template-rows: 100px 100px 100px 200px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="grid">
+            <p>Paragraph A</p>
+            <p>Paragraph B</p>
+            <p>Paragraph C</p>
+            <img src="test.png">
+        </div>
+    </body>
+</html>

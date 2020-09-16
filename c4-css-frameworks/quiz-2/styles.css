@@ -1,0 +1,19 @@
+.box-a {
+    border: 4px purple solid;
+    font-weight: bold;
+    margin: 8px;
+    padding: 16px;
+    height: 200px;
+}
+.box-b {
+    border: solid 1px blue;
+    color: blue;
+}
+.box-b + section {
+    border: dotted 1px grey;
+    font-size: 8px;
+    position: absolute;
+    bottom: 16px; 
+    right: 16px; 
+    height: 64px
+}

@@ -1,0 +1,12 @@
+p {
+    color: #444;
+}
+.warning {
+    color: red;
+}
+.disclosure {
+    color: #999;
+}
+.disclosure:hover {
+    color: #444;
+}
