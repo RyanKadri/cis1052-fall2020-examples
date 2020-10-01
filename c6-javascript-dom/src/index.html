@@ -1,0 +1,22 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <h1 id="my-header">This is my header</h1>
+        <div>This is a div</div>
+
+        <p>This is a paragraph</p>
+
+
+        <script>
+            const header = document.querySelector("#my-header");
+            header.style.color = "red";
+            
+            document.body.innerHTML += "<div>This is a div</div>";
+
+            const mySubHeader = document.createElement("h2");
+            mySubHeader.innerText = "This is a subheader"
+            header.insertAdjacentElement("afterend", mySubHeader);
+        </script>
+    </body>
+</html>
