@@ -1,0 +1,15 @@
+.color-box {
+    height: 400px;
+    width: 400px;
+    border: solid 2px #444;
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.color-box.invalid {
+    text-decoration: line-through;
+    background-color: white !important;
+}

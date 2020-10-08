@@ -1,0 +1,23 @@
+<html>
+    <body>
+        <span>Click count:</span><span id="counter">0</span>
+        <p>
+            <button onclick="handleClick()">Click Me</button>
+            <button onclick="reset()">Reset</button>
+        </p>
+        <script>
+            const myCounter = document.querySelector("#counter");
+            let numClicks = 0;
+
+            function handleClick() {
+                numClicks = numClicks + 1;
+                myCounter.innerText = numClicks;
+            }
+
+            function reset() {
+                numClicks = 0;
+                myCounter.innerText = numClicks;
+            }
+        </script>
+    </body>
+</html>

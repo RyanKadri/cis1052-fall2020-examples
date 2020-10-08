@@ -1,0 +1,24 @@
+<html>
+    <body>
+        <label>First Name: 
+            <input type="text" id="first-name" onclick="handleUpdate()">
+        </label>
+        <button>Fake Button</button>
+        <p id="name-feedback">Hello</p>
+
+        <script>
+            const firstNameTextbox = document.querySelector("#first-name");
+            const firstNameFeedback = document.querySelector("#name-feedback");
+            console.log(firstNameFeedback.innerText)
+
+            function handleUpdate() {
+                const firstName = firstNameTextbox.value;
+                if(firstName === "Ryan") {
+                    firstNameFeedback.innerText = "Wow that's a cool name"
+                } else {
+                    firstNameFeedback.innerText = "Meh. I've heard better"
+                }
+            } 
+        </script>
+    </body>
+</html>

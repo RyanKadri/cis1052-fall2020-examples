@@ -1,0 +1,14 @@
+<html>
+    <head></head>
+    <body>
+        <p id="detonate-paragraph">Detonate</p>
+        <button onclick="detonate()">Don't click me!</button>
+
+        <script>
+            function detonate() {
+                const paragraph = document.querySelector("#detonate-paragraph");
+                paragraph.innerText = "Boom"
+            }
+        </script>
+    </body>
+</html>

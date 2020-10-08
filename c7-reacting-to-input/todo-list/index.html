@@ -1,0 +1,44 @@
+<html>
+    <head></head>
+    <body>
+        <form onsubmit="addTodo(event)">
+            <label>To Do:
+                <input type="text" id="todo-input">
+            </label>
+            <button>Submit</button>
+        </form>
+        <ul id="todo-list">
+
+        </ul>
+        <script>
+            const textbox = document.querySelector("#todo-input");
+            const todoList = document.querySelector("#todo-list");
+
+            function addTodo(event) {
+                event.preventDefault();
+                
+                // Add Item
+                const newItem = document.createElement("li");
+                newItem.innerText = textbox.value;
+                todoList.append(newItem);
+
+                // Add Item
+                const deleteButton = document.createElement("button");
+                deleteButton.innerText = "Delete";
+                newItem.append(deleteButton);
+
+                // Add onclick handler
+                deleteButton.onclick = deleteTodoItem
+                
+                // Reset input box
+                textbox.value = "";
+            }
+
+            function deleteTodoItem(event) {
+                const elementToDelete = event.target.parentElement;
+                elementToDelete.remove();
+            }
+
+        </script>
+    </body>
+</html>
