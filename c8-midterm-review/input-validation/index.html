@@ -1,0 +1,29 @@
+<html>
+    <head></head>
+    <body>
+        <label>Username:
+            <input type="text" onchange="handleUsernameChange()" id="username-textbox">
+        </label>
+        <p id="feedback">Looks Good</p>
+        <script>
+            const feedbackParagraph = document.querySelector("#feedback");
+            const textbox = document.querySelector("#username-textbox");
+
+            function handleUsernameChange() {
+                if(isPalindrome(textbox.value)) {
+                    feedbackParagraph.innerText = "A palindrome? Gross!"
+                } else {
+                    feedbackParagraph.innerText = "Looks Good"
+                }
+            }
+
+            function isPalindrome(str) {
+                let reversed = "";
+                for(let i = str.length - 1; i >= 0; i--) {
+                    reversed = reversed + str[i]
+                }
+                return reversed === str;
+            }
+        </script>
+    </body>
+</html>

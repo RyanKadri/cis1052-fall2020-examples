@@ -1,0 +1,74 @@
+/* Please put layout-related CSS in this file. I have given you a starting point and some hints for the layout */
+
+.page-content {
+    display: flex;
+}
+
+.user-activity {
+    display: flex;
+    flex-direction: column;
+    border: solid 2px red;
+    grid-area: sidebar;
+}
+
+.news-feed {
+    display: flex;
+    flex-direction: column;
+    border: solid 2px blue;
+    grid-area: news-feed;
+    /* Hmm. Everything sure is close together... How do I add spacing again? */
+}
+
+.top-nav .main-links ul {
+    /* How can I make the bullet points disappear? I wonder if there's a tutorial for making a nice top nav somewhere
+     * on the internet... */
+}
+
+.user-activity img {
+    /* Those huge images are pretty annoying. Getting them out of the way, even temporarily, would be nice. */
+}
+
+.top-nav {
+    border: 2px solid green;
+    grid-area: header;
+    display: flex;
+    align-items: center;
+}
+
+img {
+    max-width: 35%;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 64px 1fr;
+    grid-template-areas: 'header header'
+                         'sidebar news-feed';
+}
+
+.main-links ul {
+    display: flex;
+}
+
+.currently-reading section {
+    border: solid 1px grey;
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 8px;
+}
+
+.currently-reading section header {
+    margin-left: 8px;
+}
+
+@media (max-width: 600px) {
+    body {
+        color: red;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: 'header'
+                             'sidebar'
+                             'news-feed';
+    }
+}
