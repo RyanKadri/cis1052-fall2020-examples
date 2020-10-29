@@ -1,0 +1,32 @@
+<html>
+    <head></head>
+    <body>
+        <label>Vitamin Extractor:
+            <input id="word-input">
+        </label>
+        <p>We were able to extract <em id="num-vitamins"></em> vitamins from this phrase</p>
+
+        <script>
+            const numVitaminsElement = document.querySelector("#num-vitamins");
+            const phraseInput = document.querySelector("#word-input");
+
+            phraseInput.addEventListener("input", handleInput)
+
+            function vitaminLetters(myString) {
+                let count = 0;
+                for (const letter of myString.toUpperCase()) {
+                    if (letter === "A" || letter === "B" || letter === "C" || letter === "D" || letter === "E" || letter === "K") {
+                        count++;
+                    }
+                }
+                return count;
+            }
+
+            function handleInput() {
+                const inputPhrase = phraseInput.value;
+                const numVitamins = vitaminLetters(inputPhrase);
+                numVitaminsElement.innerText = numVitamins;
+            }
+        </script>
+    </body>
+</html>

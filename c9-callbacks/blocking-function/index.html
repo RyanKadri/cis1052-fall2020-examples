@@ -1,0 +1,21 @@
+<html>
+    <head></head>
+    <body>
+        <button onclick="delayNms(10000)">Click Me</button>
+        <p>This is some text</p>
+        <button onclick="sayHello()">Log Something</button>
+        <script>
+            function delayNms(n) {
+                const start = Date.now();
+                while(Date.now() < start + n) {
+
+                }
+                console.log("done");
+            }
+
+            function sayHello() {
+                console.log("Hello");
+            }
+        </script>
+    </body>
+</html>
