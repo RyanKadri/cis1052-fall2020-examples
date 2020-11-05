@@ -1,0 +1,24 @@
+<html>
+    <head></head>
+    <body>
+        <h1>Dad Jokes!!</h1>
+        <ul id="joke-list">
+
+        </ul>
+        <script>
+            const myList = document.querySelector("#joke-list");
+
+            fetch("https://icanhazdadjoke.com/search", { headers: { "Accept": "application/json" } })
+                .then(resp => { 
+                    return resp.json() })
+                .then(data => { 
+                    const jokes = data.results.map(result => result.joke);
+                    let jokeItems = "";
+                    for(const joke of jokes) {
+                        jokeItems = jokeItems + "<li>" + joke + "</li>";
+                    }
+                    myList.innerHTML = jokeItems;
+                })
+        </script>
+    </body>
+</html>
