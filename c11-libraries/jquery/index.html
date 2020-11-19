@@ -1,0 +1,23 @@
+<html>
+    <head></head>
+    <body>
+        <ul id="my-list">
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $("#my-list li")
+                .css("color", "red")
+                .text((i, old) => `Item ${i + 1}.${i + 1}`)
+                .append(
+                    $("<ul>").append(
+                        $("<li>", { class: "inner" })
+                            .text("inner")
+                            .hover(e => $(e.currentTarget).css("color", "green"))
+                    )
+                )
+        </script>
+    </body>
+</html>
