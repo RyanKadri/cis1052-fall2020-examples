@@ -1,0 +1,70 @@
+<html>
+    <head></head>
+    <body>
+        <h1>Pokedex</h1>
+        <label>Search for a Pokemon
+            <input id="pokemon-id" type="text">
+        </label>
+        <button onclick="handleSearch()">Search</button>
+        <p id="error-message"></p>
+        <p>Pokemon Name: <span id="name"></span></p>
+        <p>Pokemon Weight: <span id="weight"></span></p>
+        <p>Pokemon Height: <span id="height"></span></p>
+        <ul id="attack-list">
+
+        </ul>
+        <script>
+            const myInput = document.querySelector("#pokemon-id");
+            const nameParagraph = document.querySelector("#name");
+            const weightParagraph = document.querySelector("#weight");
+            const heightParagraph = document.querySelector("#height");
+            const errorParagraph = document.querySelector("#error-message");
+            const attackList = document.querySelector("#attack-list");
+            
+            function handleSearch() {
+                const pokemonName = myInput.value.trim().toLowerCase();
+                errorParagraph.innerText = "";
+                fetch("https://pokeapi.co/api/v2/pokemon/" + pokemonName)
+                    .then(resp => resp.json())
+                    .then(data => {
+                        console.log(data);
+                        nameParagraph.innerText = data.name;
+                        weightParagraph.innerText = data.weight;
+                        heightParagraph.innerText = data.height;
+
+                        for(const moveWrapper of data.moves) {
+                            const newItem = createAttackListItem(moveWrapper.move)
+                            attackList.appendChild(newItem);
+                        }
+                    })
+                    .catch(e => {
+                        errorParagraph.innerText = "Oh no! Something went wrong!"
+                    });
+            }
+
+            // I personally think this is a little harder to read quickly. 
+            // The nice thing about this is that you don't need to create
+            // JS in HTML in JS. Quotes and syntax can get hard with more complex logic. This keeps everything in JS
+            function createAttackListItem(move) {
+                const newItem = document.createElement("li")
+                newItem.innerText = move.name;
+                const moreDetailsButton = document.createElement("button")
+                moreDetailsButton.innerText = "More Details";
+                moreDetailsButton.addEventListener("click", () => {
+                    fetchMove(move.url);
+                })
+                newItem.appendChild(moreDetailsButton);
+                return newItem;
+            }
+
+            function fetchMove(url) {
+                fetch(url)
+                    .then(resp => resp.json())
+                    .then(data => {
+                        console.log(data)
+                        // DOM code for moves goes here
+                    });
+            }
+        </script>
+    </body>
+</html>

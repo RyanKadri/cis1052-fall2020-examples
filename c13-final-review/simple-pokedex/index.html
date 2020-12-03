@@ -1,0 +1,54 @@
+<html>
+    <head></head>
+    <body>
+        <h1>Pokedex</h1>
+        <label>Search for a Pokemon
+            <input id="pokemon-id" type="text">
+        </label>
+        <button onclick="handleSearch()">Search</button>
+        <p id="error-message"></p>
+        <p>Pokemon Name: <span id="name"></span></p>
+        <p>Pokemon Weight: <span id="weight"></span></p>
+        <p>Pokemon Height: <span id="height"></span></p>
+        <ul id="attack-list">
+
+        </ul>
+        <script>
+            const myInput = document.querySelector("#pokemon-id");
+            const nameParagraph = document.querySelector("#name");
+            const weightParagraph = document.querySelector("#weight");
+            const heightParagraph = document.querySelector("#height");
+            const errorParagraph = document.querySelector("#error-message");
+            const attackList = document.querySelector("#attack-list");
+            
+            function handleSearch() {
+                const pokemonName = myInput.value.trim().toLowerCase();
+                errorParagraph.innerText = "";
+                fetch("https://pokeapi.co/api/v2/pokemon/" + pokemonName)
+                    .then(resp => resp.json())
+                    .then(data => {
+                        console.log(data);
+                        nameParagraph.innerText = data.name;
+                        weightParagraph.innerText = data.weight;
+                        heightParagraph.innerText = data.height;
+                        let listHTML = "";
+                        for(const moveWrapper of data.moves) {
+                            listHTML += `<li>${moveWrapper.move.name}`
+                                + `<button onclick="fetchMove('${moveWrapper.move.url}')">More Details</button>`
+                                + `</li>`;
+                        }
+                        attackList.innerHTML = listHTML;
+                    })
+                    .catch(e => {
+                        errorParagraph.innerText = "Oh no! Something went wrong!"
+                    });
+            }
+
+            function fetchMove(url) {
+                fetch(url)
+                    .then(resp => resp.json())
+                    .then(data => console.log(data));
+            }
+        </script>
+    </body>
+</html>

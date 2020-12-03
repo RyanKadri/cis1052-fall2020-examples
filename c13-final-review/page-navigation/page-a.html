@@ -1,0 +1,16 @@
+<html>
+    <head></head>
+    <body>
+        <h1>Page A</h1>
+        <a href="page-b.html">Go to Page B</a>
+        <button onclick="handleNavigation()">Trigger navigation</button>
+        <script>
+            function handleNavigation() {
+                setTimeout(function() {
+                    location.pathname = "page-navigation/page-b.html";
+                }, 3000);
+                
+            }
+        </script>
+    </body>
+</html>

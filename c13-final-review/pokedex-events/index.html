@@ -1,0 +1,58 @@
+<html>
+    <head></head>
+    <body>
+        <h1>Pokedex</h1>
+        <label>Search for a Pokemon
+            <input id="pokemon-id" type="text">
+        </label>
+        <button onclick="handleSearch()">Search</button>
+        <p id="error-message"></p>
+        <p>Pokemon Name: <span id="name"></span></p>
+        <p>Pokemon Weight: <span id="weight"></span></p>
+        <p>Pokemon Height: <span id="height"></span></p>
+        <ul id="attack-list">
+
+        </ul>
+        <script>
+            const myInput = document.querySelector("#pokemon-id");
+            const nameParagraph = document.querySelector("#name");
+            const weightParagraph = document.querySelector("#weight");
+            const heightParagraph = document.querySelector("#height");
+            const errorParagraph = document.querySelector("#error-message");
+            const attackList = document.querySelector("#attack-list");
+            
+            function handleSearch() {
+                const pokemonName = myInput.value.trim().toLowerCase();
+                errorParagraph.innerText = "";
+                fetch("https://pokeapi.co/api/v2/pokemon/" + pokemonName)
+                    .then(resp => resp.json())
+                    .then(data => {
+                        console.log(data);
+                        nameParagraph.innerText = data.name;
+                        weightParagraph.innerText = data.weight;
+                        heightParagraph.innerText = data.height;
+
+                        // Getting a little fancier here with a map + join vs loop. Whether this is more readable depends who you ask
+                        const listHTML = data.moves.map(({ move }) => `
+                            <li>${move.name} 
+                                <button onclick="moreDetails(event)" data-move="${move.url}">More Details</button>
+                            </li>`
+                        ).join("\n");
+                
+                        attackList.innerHTML = listHTML;
+                    })
+                    .catch(e => {
+                        errorParagraph.innerText = "Oh no! Something went wrong!"
+                    });
+            }
+
+            // Events in JavaScript come with some extra data (like what element triggered them)
+            // This takes that element and pulls the move URL out of an attribute
+            function moreDetails(evt) {
+                fetch(evt.target.dataset.move)
+                    .then(resp => resp.json())
+                    .then(data => console.log(data));
+            }
+        </script>
+    </body>
+</html>
